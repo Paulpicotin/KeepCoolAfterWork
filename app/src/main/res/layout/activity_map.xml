@@ -10,17 +10,17 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bienvenue sur l'application KeepCoolAfterWork"
+        android:text="Bienvenue sur la Map"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/boutonMagique"
+        android:id="@+id/boutonMap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ce bouton est magique"
+        android:text="Ce bouton représente ta localisation car elle n'existe pas encore."
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
