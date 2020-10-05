@@ -2,5 +2,5 @@
     <string name="app_name">KeepCoolAfterWork</string>
     <string name="title_activity_maps">Ma Map</string>
     //la clé pour avoir les autorisations google(elle devrait être protégé)
-    <string name="maps_api_key">AIzaSyCMFkHmgKspXgDrFDIwAROgqittaTPpQ2g</string>
+    <string name="maps_api_key">"mettre la clé ici"</string>
 </resources>

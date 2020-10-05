@@ -1,0 +1,3 @@
+Pour la map il faut rajouter une clé dans le strings car, par souci de sécurité, je l'ai enlevé
+j'ai essayé de rajouter un calque pour la géolocalisation mais je n'ai pas réussi à avoir les autorisations.
+Ducoup la localisation marche avec la latitude et longitude sur Paris.
