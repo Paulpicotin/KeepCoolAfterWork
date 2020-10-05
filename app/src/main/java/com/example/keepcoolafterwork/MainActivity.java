@@ -1,23 +1,90 @@
 package com.example.keepcoolafterwork;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.CursorLoader;
+import androidx.loader.content.Loader;
 
+import android.app.Activity;
+import android.content.ContentResolver;
+import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.util.Log;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+/*public class MainActivity extends AppCompatActivity {
+
+    private static  int CONTACTS_LOADER_ID  ;
+    private static  String TAG  ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.activity_main);
 
         // Prepare the loader.  Either re-connect with an existing one,
         // or start a new one.
         getLoaderManager().initLoader(CONTACTS_LOADER_ID,
                 null,
                 this);
+    }
+    private void getContactList() {
+        ContentResolver cr = getContentResolver();
+        Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI,
+                null, null, null, null);
+
+        if ((cur != null ? cur.getCount() : 0) > 0) {
+            while (cur != null && cur.moveToNext()) {
+                String id = cur.getString(
+                        cur.getColumnIndex(ContactsContract.Contacts._ID));
+                String name = cur.getString(cur.getColumnIndex(
+                        ContactsContract.Contacts.DISPLAY_NAME));
+
+                if (cur.getInt(cur.getColumnIndex(
+                        ContactsContract.Contacts.HAS_PHONE_NUMBER)) > 0) {
+                    Cursor pCur = cr.query(
+                            ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                            null,
+                            ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?",
+                            new String[]{id}, null);
+                    while (pCur.moveToNext()) {
+                        String phoneNo = pCur.getString(pCur.getColumnIndex(
+                                ContactsContract.CommonDataKinds.Phone.NUMBER));
+                        Log.i(TAG, "Name: " + name);
+                        Log.i(TAG, "Phone Number: " + phoneNo);
+                    }
+                    pCur.close();
+                }
+            }
+        }
+        if(cur!=null){
+            cur.close();
+        }
+    }
+}*/
+public class MainActivity extends Activity
+        implements LoaderManager.LoaderCallbacks<Cursor> {
+
+    private static final int CONTACTS_LOADER_ID = 1;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Prepare the loader.  Either re-connect with an existing one,
+        // or start a new one.
+        getLoaderManager().initLoader(CONTACTS_LOADER_ID,
+                null,
+                (android.app.LoaderManager.LoaderCallbacks<Object>) this)
+                ;
     }
 
     @Override
@@ -44,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         // longer using it.
     }
 
-    private  Loader<Cursor> contactsLoader() {
+    private Loader<Cursor> contactsLoader() {
         Uri contactsUri = ContactsContract.Contacts.CONTENT_URI; // The content URI of the phone contacts
 
         String[] projection = {                                  // The columns to return for each row
@@ -80,5 +147,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
-    }
-}
+
+
+
